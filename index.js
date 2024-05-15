@@ -17,27 +17,43 @@ program.parse();
 
 const options = program.opts();
 
-// TODO: рефакторити
 async function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case "list":
-      const allContacts = await listContacts();
-      return console.log(allContacts);
+      try {
+        const allContacts = await listContacts();
+        return console.log(allContacts);
+      } catch (error) {
+        return console.log(error.message);
+      }
+
       break;
 
     case "get":
-      const oneContact = await getContactById(id);
-      return console.log(oneContact);
+      try {
+        const oneContact = await getContactById(id);
+        return console.log(oneContact);
+      } catch (error) {
+        return console.log(error.message);
+      }
       break;
 
     case "add":
-      const newContact = await addContact(name, email, phone);
-      return console.log(newContact);
+      try {
+        const newContact = await addContact(name, email, phone);
+        return console.log(newContact);
+      } catch (error) {
+        return console.log(error.message);
+      }
       break;
 
     case "remove":
-      const deleteContact = await removeContact(id);
-      return console.log(deleteContact);
+      try {
+        const deleteContact = await removeContact(id);
+        return console.log(deleteContact);
+      } catch (error) {
+        return console.log(error.message);
+      }
       break;
 
     default:
